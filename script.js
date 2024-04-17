@@ -26,16 +26,22 @@ function playRound(playerSelection, computerSelection) {
 
     if (playerSelection !== computerSelection) {
         if (playerSelection == rock && computerSelection == scissors) {
+            scoreCalc("player");
             return `You won! ${rock} beats ${scissors}`;
         } else if(playerSelection === rock && computerSelection === paper) {
+            scoreCalc("computer");
             return`You lose! ${rock} lose to ${paper}`;
         } else if(playerSelection === paper && computerSelection === scissors) {
+            scoreCalc("computer");
             return `You lose! ${paper} lose to ${scissors}`;
         } else if (playerSelection === paper && computerSelection === rock) {
+            scoreCalc("player");
             return `You won! ${paper} beats ${rock}`;
         } else if (playerSelection === scissors && computerSelection === rock) {
+            scoreCalc("computer");
             return `You lose! ${scissors} lose to ${rock}`;
         } else { // this is where player selection equal scisors, and computer slection is paper 
+            scoreCalc("player");
             return `You won! ${scissors} beats ${paper}`;
         }
     } else {
@@ -55,14 +61,30 @@ function scoreCalc (winner) {
         computerScore += 1;
     }
 
+    updateScoreText();
+
     if (computerScore === 5 || playerScore === 5) {
+        winnerDisplay();
         reset();
+    }
+}
+
+function winnerDisplay() {
+    if (computerScore === 5) {
+        winnerMessageText.textContent = "You loser! computer won the game";
+    } else {
+        winnerMessageText.textContent = "You won the game";
     }
 }
 
 function reset () {
     computerScore = 0;
     playerScore = 0;
+}
+
+function updateScoreText () {
+    playerScorePara.textContent = "player Score: " + playerScore;
+    computerScorePara.textContent = "computer Score: " + computerScore;
 }
 
 
@@ -112,6 +134,10 @@ const results = document.querySelector(".results");
 const playerSelectionPara = document.querySelector(".player_selection_text");
 const computerSelectionPara = document.querySelector(".computer_selection_text");
 const winnerPara = document.querySelector(".winner_text");
+
+const playerScorePara = document.querySelector(".player_score");
+const computerScorePara = document.querySelector(".computer_score");
+const winnerMessageText = document.querySelector(".winner_message");
 
 
 // DOM elements creation
