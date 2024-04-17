@@ -1,5 +1,5 @@
 
-// global variables
+// ***** global variables *****
 
 const rock = "rock";
 const paper = "paper";
@@ -8,7 +8,25 @@ let computerScore = 0;
 let playerScore = 0;
 
 
-// Computer Selection functions
+// ***** Elements refrences  *****
+const playerSelectionContainer = document.querySelector(".player_selection");
+const results = document.querySelector(".results");
+
+const playerSelectionPara = document.querySelector(".player_selection_text");
+const computerSelectionPara = document.querySelector(".computer_selection_text");
+const winnerPara = document.querySelector(".winner_text");
+
+const playerScorePara = document.querySelector(".player_score");
+const computerScorePara = document.querySelector(".computer_score");
+const winnerMessageText = document.querySelector(".winner_message");
+
+const resetContainer = document.querySelector(".reset_container")
+
+// Elements creation
+const resetButton = document.createElement("button");
+resetButton.textContent = "reset";
+
+//  ***** Computer Selection functions *****
 
 function getComputerChoice(){
     let numBetween1To3 = randomNum();
@@ -28,6 +46,8 @@ function randomNum() {
 
 
 
+
+//  ***** game functions *****
 function playRound(playerSelection, computerSelection) {
 
     if (playerSelection !== computerSelection) {
@@ -66,28 +86,10 @@ function scoreCalc (winner) {
 
     if (computerScore === 5 || playerScore === 5) {
         winnerDisplay();
-        reset();
+        console.log(resetContainer);
+        resetContainer.appendChild(resetButton);
     }
 }
-
-function winnerDisplay() {
-    if (computerScore === 5) {
-        winnerMessageText.textContent = "You loser! computer won the game";
-    } else {
-        winnerMessageText.textContent = "You won the game";
-    }
-}
-
-function reset () {
-    computerScore = 0;
-    playerScore = 0;
-}
-
-function updateScoreText () {
-    playerScorePara.textContent = "player Score: " + playerScore;
-    computerScorePara.textContent = "computer Score: " + computerScore;
-}
-
 
 function calculateScore(roundWinnerText) {
 
@@ -101,20 +103,6 @@ function calculateScore(roundWinnerText) {
 }
 
 
-// Elements refrences 
-const playerSelectionContainer = document.querySelector(".player_selection");
-const results = document.querySelector(".results");
-
-const playerSelectionPara = document.querySelector(".player_selection_text");
-const computerSelectionPara = document.querySelector(".computer_selection_text");
-const winnerPara = document.querySelector(".winner_text");
-
-const playerScorePara = document.querySelector(".player_score");
-const computerScorePara = document.querySelector(".computer_score");
-const winnerMessageText = document.querySelector(".winner_message");
-
-
-// DOM elements creation
 // event Listeners;
 
 playerSelectionContainer.addEventListener("click", (e) => {
@@ -138,6 +126,7 @@ playerSelectionContainer.addEventListener("click", (e) => {
     appeandRoundResults(playerSelection,computerSelection,playRound(playerSelection,computerSelection));
 });
 
+resetButton.addEventListener("click", reset);
 // Changing DOM
 
 function appeandRoundResults (playerSelection,computerSelection,wiinner) {
@@ -145,3 +134,30 @@ function appeandRoundResults (playerSelection,computerSelection,wiinner) {
     computerSelectionPara.textContent = computerSelection;
     winnerPara.textContent = wiinner;
 }
+
+
+function reset () {
+    computerScore = 0;
+    playerScore = 0;
+    playerSelectionPara.textContent = "";
+    computerSelectionPara.textContent = "";
+    winnerPara.textContent = "";
+    winnerMessageText.textContent = "";
+    playerScorePara.textContent = "player Score: 0";
+    computerScorePara.textContent = "computer Score: 0";
+}
+
+
+function updateScoreText () {
+    playerScorePara.textContent = "player Score: " + playerScore;
+    computerScorePara.textContent = "computer Score: " + computerScore;
+}
+
+function winnerDisplay() {
+    if (computerScore === 5) {
+        winnerMessageText.textContent = "You loser! computer won the game";
+    } else {
+        winnerMessageText.textContent = "You won the game";
+    }
+}
+
