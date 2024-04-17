@@ -44,6 +44,28 @@ function playRound(playerSelection, computerSelection) {
 }
 
 
+// Score variables
+let computerScore = 0;
+let playerScore = 0;
+
+function scoreCalc (winner) {
+    if (winner == "player") {
+        playerScore += 1;
+    } else {
+        computerScore += 1;
+    }
+
+    if (computerScore === 5 || playerScore === 5) {
+        reset();
+    }
+}
+
+function reset () {
+    computerScore = 0;
+    playerScore = 0
+}
+
+
 /* function playGame() {
     let computerScore = 0;
     let playerScore = 0;
@@ -85,9 +107,14 @@ function calculateScore(roundWinnerText) {
 
 // Elements refrences 
 const playerSelectionContainer = document.querySelector(".player_selection");
+const results = document.querySelector(".results");
+
+const playerSelectionPara = document.querySelector(".player_selection_text");
+const computerSelectionPara = document.querySelector(".computer_selection_text");
+const winnerPara = document.querySelector(".winner_text");
 
 
-
+// DOM elements creation
 // event Listeners;
 
 playerSelectionContainer.addEventListener("click", (e) => {
@@ -108,9 +135,17 @@ playerSelectionContainer.addEventListener("click", (e) => {
             playerSelection="scissors";
             break;
     }
-
-    console.log(computerSelection + " computer choice");
-    console.log(playerSelection + " player choice");
-
-    console.log(playRound(playerSelection,computerSelection));
+    appeandRoundResults(playerSelection,computerSelection,playRound(playerSelection,computerSelection));
 });
+
+// Changing DOM
+
+function appeandRoundResults (playerSelection,computerSelection,wiinner) {
+    playerSelectionPara.textContent = playerSelection;
+    computerSelectionPara.textContent = computerSelection;
+    winnerPara.textContent = wiinner;
+}
+
+// each time you press a button;
+// play the round
+// then, calculate the score as well.
