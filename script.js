@@ -34,7 +34,7 @@ function playRound(playerSelection, computerSelection) {
         } else if (playerSelection === paper && computerSelection === rock) {
             return `You won! ${paper} beats ${rock}`;
         } else if (playerSelection === scissors && computerSelection === rock) {
-            return `You lose! ${scissors} lose to ${rock}=`;
+            return `You lose! ${scissors} lose to ${rock}`;
         } else { // this is where player selection equal scisors, and computer slection is paper 
             return `You won! ${scissors} beats ${paper}`;
         }
@@ -94,7 +94,6 @@ playerSelectionContainer.addEventListener("click", (e) => {
     let playerSelection = "";
     let computerSelection = getComputerChoice();
     let target = e.target;
-    console.log(target.className);
 
     switch(target.className) {
         case "rock": 
@@ -110,5 +109,8 @@ playerSelectionContainer.addEventListener("click", (e) => {
             break;
     }
 
-    playRound(playerSelection,computerSelection);
+    console.log(computerSelection + " computer choice");
+    console.log(playerSelection + " player choice");
+
+    console.log(playRound(playerSelection,computerSelection));
 });
