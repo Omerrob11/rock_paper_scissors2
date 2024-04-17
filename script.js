@@ -62,7 +62,7 @@ function scoreCalc (winner) {
 
 function reset () {
     computerScore = 0;
-    playerScore = 0
+    playerScore = 0;
 }
 
 
