@@ -44,7 +44,7 @@ function playRound(playerSelection, computerSelection) {
 }
 
 
-function playGame() {
+/* function playGame() {
     let computerScore = 0;
     let playerScore = 0;
     for (let i = 0; i<=4; i++) {
@@ -68,8 +68,8 @@ function playGame() {
         return "player won the game"
     } else {
         return "it's a tie";
-    }
-}
+    } 
+} */
 
 function calculateScore(roundWinnerText) {
 
@@ -82,3 +82,33 @@ function calculateScore(roundWinnerText) {
     }
 }
 
+
+// Elements refrences 
+const playerSelectionContainer = document.querySelector(".player_selection");
+
+
+
+// event Listeners;
+
+playerSelectionContainer.addEventListener("click", (e) => {
+    let playerSelection = "";
+    let computerSelection = getComputerChoice();
+    let target = e.target;
+    console.log(target.className);
+
+    switch(target.className) {
+        case "rock": 
+            playerSelection="rock";
+            break;
+
+        case "paper": 
+            playerSelection="paper";
+            break;
+
+        case "scissors": 
+            playerSelection="scissors";
+            break;
+    }
+
+    playRound(playerSelection,computerSelection);
+});
