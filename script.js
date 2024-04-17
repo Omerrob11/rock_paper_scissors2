@@ -1,6 +1,14 @@
+
+// global variables
+
 const rock = "rock";
 const paper = "paper";
 const scissors = 'scissors';
+let computerScore = 0;
+let playerScore = 0;
+
+
+// Computer Selection functions
 
 function getComputerChoice(){
     let numBetween1To3 = randomNum();
@@ -18,9 +26,7 @@ function randomNum() {
     return Math.floor(Math.random() * 3) + 1;
 }
 
-function getPlayerSelection() {
-    return prompt("Pick a hand").toLowerCase();
-}
+
 
 function playRound(playerSelection, computerSelection) {
 
@@ -48,11 +54,6 @@ function playRound(playerSelection, computerSelection) {
         return "its a tie round";
     }
 }
-
-
-// Score variables
-let computerScore = 0;
-let playerScore = 0;
 
 function scoreCalc (winner) {
     if (winner == "player") {
@@ -87,33 +88,6 @@ function updateScoreText () {
     computerScorePara.textContent = "computer Score: " + computerScore;
 }
 
-
-/* function playGame() {
-    let computerScore = 0;
-    let playerScore = 0;
-    for (let i = 0; i<=4; i++) {
-        let playerSelection = getPlayerSelection();
-        let computerSelection = getComputerChoice();
-        let roundWinner = playRound(playerSelection,computerSelection); 
-        if (calculateScore(roundWinner) === "player") {
-            playerScore += 1;
-        } else if(calculateScore(roundWinner) == "computer") {
-            computerScore +=1;
-        } else {
-            playerScore += 1;
-            computerScore +=1;
-        }
-
-    }
-
-    if ( computerScore > playerScore) {
-        return "compute won the game!"
-    } else if (playerScore > computerScore) {
-        return "player won the game"
-    } else {
-        return "it's a tie";
-    } 
-} */
 
 function calculateScore(roundWinnerText) {
 
@@ -171,7 +145,3 @@ function appeandRoundResults (playerSelection,computerSelection,wiinner) {
     computerSelectionPara.textContent = computerSelection;
     winnerPara.textContent = wiinner;
 }
-
-// each time you press a button;
-// play the round
-// then, calculate the score as well.
